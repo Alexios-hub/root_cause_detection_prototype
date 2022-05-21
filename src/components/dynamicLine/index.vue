@@ -6,12 +6,13 @@
 
 <template>
   <div class="wrap-container sn-container"> 
-    <div class="sn-content"> 
+    <div class="sn-content" > 
       <div class="sn-title">黄金指标
-         <el-radio-group v-model="radio">
-    <el-radio :label="3">备选项</el-radio>
-    <el-radio :label="6">备选项</el-radio>
-    <el-radio :label="9">备选项</el-radio>
+         <el-radio-group v-model="radio" @change="onRadioChange" >
+    <el-radio :label="1">count</el-radio>
+    <el-radio :label="2">mrt</el-radio>
+    <el-radio :label="3">rr</el-radio>
+    <el-radio :label="4">sr</el-radio>
   </el-radio-group>
         </div> 
       <div class="sn-body"> 
@@ -29,7 +30,7 @@ export default {
   name: "dynamicLine",
   data() {
     return {
-       radio: 3,
+       radio: 1,
       option: null,
       timer: null,
       xData: [],
@@ -50,6 +51,42 @@ console.log(this.goldMetric);
    
   },
   methods: {
+    onRadioChange(){
+      let myChart = echarts.init(document.getElementById('chart_dt'),'dark');
+     switch(this.radio){
+       case 1:
+         
+           this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['count'];
+           this.option['series'][0]['data']=this.goldMetric['adservice-http']['count'];
+           this.option['series'][0]['data']=this.goldMetric['cartservice-grpc']['count']
+           this.option['series'][0]['data']=this.goldMetric['checkoutservice-grpc']['count']
+           this.option['series'][0]['data']=this.goldMetric['currencyservice-grpc']['count']
+           this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['count']
+         
+         break;
+            case 2:
+         for(var i=0;i<this.option['series'].length;i++){
+           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['mrt']
+         }
+         break;
+               case 3:
+         for(var i=0;i<this.option['series'].length;i++){
+           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['rr']
+         }
+         break;
+               case 4:
+         for(var i=0;i<this.option['series'].length;i++){
+           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['sr']
+         }
+         break;
+         
+
+     }
+      myChart.setOption(this.option, true);
+       
+
+
+    },
     readFile(filePath) {
       var res;
    axios.get(filePath).then(response=>{
@@ -142,7 +179,7 @@ console.log(this.goldMetric);
         xAxis: {
           data:this.goldMetric['adservice-grpc']['timeStamp'],
           // type: 'time',
-          name: '年-月-日',
+          name: 'timeStamp',
           boundaryGap: false,
           splitNumber: 5,
           // axisLabel: {
@@ -168,7 +205,7 @@ console.log(this.goldMetric);
         yAxis: {
           type: 'value',
           scale: true,
-          name: '比特币（美元）',
+          name: 'value',
           min: 0,
           boundaryGap:  false,
           axisTick: {
@@ -336,18 +373,18 @@ console.log(this.goldMetric);
 
       myChart.setOption(this.option, true);
 
-      window.addEventListener('resize', () => {
-        myChart.resize();
-      });
+      // window.addEventListener('resize', () => {
+      //   myChart.resize();
+      // });
 
-      this.timer = setInterval(() => {
-        for (let i = 0; i < 5; i++) {
-          this.xData.shift();
-          this.xData.push(this.randomData());
-        }
+      // this.timer = setInterval(() => {
+      //   for (let i = 0; i < 5; i++) {
+      //     this.xData.shift();
+      //     this.xData.push(this.randomData());
+      //   }
 
-        myChart.setOption(this.option, true);
-      }, 2000);
+      //   myChart.setOption(this.option, true);
+      // }, 2000);
     }
   },
   beforeDestroy() {
