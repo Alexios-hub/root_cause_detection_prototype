@@ -32,6 +32,24 @@ const routes = [
   //     title: '公司品牌介绍'
   //   }
   // }
+  {
+    path: '/brand',
+    name: 'Brand',
+    component: () => import('@/views/Brand.vue'),
+    meta: {
+      title: '公司品牌介绍'
+    }
+  },
+  {
+    path:'/showTrace',
+    name:'ShowTrace',
+    component: ()=>import('../views/ShowTrace')
+  },
+  {
+    path:'/rootType',
+    name:'/RootType',
+    component: ()=>import('../views/RootType')
+  }
 ]
 
 const router = new VueRouter({

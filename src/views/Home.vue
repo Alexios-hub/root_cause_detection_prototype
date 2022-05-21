@@ -6,52 +6,42 @@
 
 <template>
   <div class="home-container">
-  	<div class="wrap" ref="editor">
+    <div ref="editor" class="wrap">
       <!-- <div class="top"></div> -->
-      
-    
-      <dynamicLine />
-
-
+<!--      <dynamicLine/>-->
       <div class="divider"></div>
-
     </div>
-    
+
   </div>
 </template>
 
 <script>
-import { screenSize } from '@/assets/js/utils'
+import {screenSize} from '@/assets/js/utils'
 
 export default {
   name: 'Home',
   components: {},
   data() {
-  	return {
-  		
-  	}
+    return {}
   },
-  computed: {
-  	
-  },
+  computed: {},
   created() {
   },
   mounted() {
     screenSize(this.$refs.editor);
   },
-  methods: {
-    
-  }
+  methods: {}
 }
 </script>
 
 <style lang="scss" scoped>
 .home-container {
-	position: absolute;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+
   .wrap {
     transform-origin: 0px 0px 0px;
     background: url(../assets/img/bj.jpg) no-repeat;
@@ -64,18 +54,20 @@ export default {
     min-height: auto;
     height: 1080px;
     overflow: auto;
+
     .top {
       position: absolute;
-      left: 0; 
-      top: 0; 
-      width: 100%; 
-      height: 80px; 
-      background-color: transparent; 
-      background: url(../assets/img/top_nav.png) no-repeat; 
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      background-color: transparent;
+      background: url(../assets/img/top_nav.png) no-repeat;
       background-position: 65% 0;
-      border: none; 
+      border: none;
       overflow: hidden;
     }
+
     .divider {
       position: absolute;
       left: 50px;
@@ -88,5 +80,5 @@ export default {
     }
 
   }
-}	
+}
 </style>

@@ -5,15 +5,15 @@
 -->
 
 <template>
-  <div class="wrap-container sn-container"> 
-    <div class="sn-content"> 
-      <div class="sn-title">双轴柱状图</div> 
-      <div class="sn-body"> 
-        <div class="wrap-container"> 
-          <div class="chartsdom" id="chart_bar"></div>
-        </div> 
-      </div> 
-    </div>   
+  <div class="wrap-container sn-container">
+    <div class="sn-content">
+      <div class="sn-title">双轴柱状图</div>
+      <div class="sn-body">
+        <div class="wrap-container">
+          <div id="chart_bar" class="chartsdom"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -73,7 +73,7 @@ export default {
           },
           axisTick: {
             show: false
-          }, 
+          },
           axisLine: {
             show: true,
             lineStyle: {
@@ -87,7 +87,7 @@ export default {
           },
           axisTick: {
             show: false
-          }, 
+          },
           splitLine: {
             show: false
           },
@@ -113,13 +113,13 @@ export default {
             itemStyle: {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                  offset: 1, 
+                  offset: 1,
                   color: 'rgba(0, 0, 0, 0)'
-                },{
-                  offset: 0.5, 
+                }, {
+                  offset: 0.5,
                   color: '#466e71'
-                },{
-                  offset: 0, 
+                }, {
+                  offset: 0,
                   color: '#eb9b44'
                 }])
               }
@@ -147,13 +147,13 @@ export default {
             itemStyle: {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                  offset: 0, 
+                  offset: 0,
                   color: 'rgba(0, 0, 0, 0)'
-                },{
-                  offset: 0.5, 
+                }, {
+                  offset: 0.5,
                   color: '#774a75'
-                },{
-                  offset: 1, 
+                }, {
+                  offset: 1,
                   color: '#b34d69'
                 }])
               }
@@ -168,7 +168,7 @@ export default {
                   shadowBlur: 20
                 }
               },
-              symbolSize: [10, 10], 
+              symbolSize: [10, 10],
               symbolOffset: [0, 0],
               data: dataCoord2,
             },
@@ -184,7 +184,7 @@ export default {
     }
   },
   beforeDestroy() {
-    
+
   }
 };
 </script>
@@ -195,6 +195,7 @@ export default {
   top: 690px;
   width: 895px;
   height: 400px;
+
   .chartsdom {
     width: 100%;
     height: 95%;

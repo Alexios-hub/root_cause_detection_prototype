@@ -6,11 +6,11 @@
 
 <template>
   <div class="brand-container">
-  	<div class="wrap">
+    <div class="wrap">
       <header>
         <div class="weather">
           <img :src="imgSrc">
-          <span class="tem">{{ weatcherData.tem }}°C</span> 
+          <span class="tem">{{ weatcherData.tem }}°C</span>
           <span class="wea">{{ weatcherData.wea }}</span>
         </div>
         <h2>区块链科技公司品牌概览</h2>
@@ -27,17 +27,17 @@
         <div class="item left">
           <div class="panel">
             <h2>业务范围</h2>
-            <business />
+            <business/>
             <div class="panel-footer"></div>
           </div>
           <div class="panel">
             <h2>人才队伍</h2>
-            <talent />
+            <talent/>
             <div class="panel-footer"></div>
           </div>
           <div class="panel">
             <h2>营收状况</h2>
-            <income />
+            <income/>
             <div class="panel-footer"></div>
           </div>
         </div>
@@ -47,13 +47,13 @@
             <div class="resume-hd">
               <ul>
                 <li>
-                  <countTo :startVal='startVal' :endVal='490' :duration='6000' separator=""></countTo>
+                  <countTo :duration='6000' :endVal='490' :startVal='startVal' separator=""></countTo>
                 </li>
                 <li>
-                  <countTo :startVal='startVal' :endVal='75' :duration='6000' separator=""></countTo>
+                  <countTo :duration='6000' :endVal='75' :startVal='startVal' separator=""></countTo>
                 </li>
                 <li>
-                  <countTo :startVal='startVal' :endVal='3000' :duration='6000' separator=""></countTo>
+                  <countTo :duration='6000' :endVal='3000' :startVal='startVal' separator=""></countTo>
                 </li>
               </ul>
             </div>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="map">
-            <div class="chart" id="chart_map"></div>
+            <div id="chart_map" class="chart"></div>
             <div class="map1"></div>
             <div class="map2"></div>
             <div class="map3"></div>
@@ -76,24 +76,24 @@
         <div class="item right">
           <div class="panel">
             <h2>产品热词</h2>
-            <wordCloud />
+            <wordCloud/>
             <div class="panel-footer"></div>
           </div>
           <div class="panel">
             <h2>客户分布</h2>
-            <distribution />
+            <distribution/>
             <div class="panel-footer"></div>
           </div>
           <div class="panel">
             <h2>发展历程</h2>
-            <history />
+            <history/>
             <div class="panel-footer"></div>
           </div>
         </div>
       </section>
-  
+
     </div>
-    
+
   </div>
 </template>
 
@@ -108,7 +108,7 @@ export default {
     countTo
   },
   data() {
-  	return {
+    return {
       nowTime: '',
       week: '',
       date: '',
@@ -118,30 +118,28 @@ export default {
       startVal: 0,
       geoCoordMap: {},
       XAData: [
-        [{ name: "长沙" }, { name: "北京", value: 100 }],
-        [{ name: "长沙" }, { name: "上海", value: 100 }],
-        [{ name: "长沙" }, { name: "广州", value: 100 }],
-        [{ name: "长沙" }, { name: "深圳", value: 100 }],
-        [{ name: "长沙" }, { name: "西安", value: 100 }]
+        [{name: "长沙"}, {name: "北京", value: 100}],
+        [{name: "长沙"}, {name: "上海", value: 100}],
+        [{name: "长沙"}, {name: "广州", value: 100}],
+        [{name: "长沙"}, {name: "深圳", value: 100}],
+        [{name: "长沙"}, {name: "西安", value: 100}]
       ],
       XNData: [
-        [{ name: "长沙" }, { name: "西宁", value: 100 }],
-        [{ name: "长沙" }, { name: "拉萨", value: 100 }],
-        [{ name: "长沙" }, { name: "哈尔滨", value: 100 }],
-        [{ name: "长沙" }, { name: "成都", value: 100 }],
-        [{ name: "长沙" }, { name: "重庆", value: 100 }]
+        [{name: "长沙"}, {name: "西宁", value: 100}],
+        [{name: "长沙"}, {name: "拉萨", value: 100}],
+        [{name: "长沙"}, {name: "哈尔滨", value: 100}],
+        [{name: "长沙"}, {name: "成都", value: 100}],
+        [{name: "长沙"}, {name: "重庆", value: 100}]
       ],
       YCData: [
-        [{ name: "北京" }, { name: "长沙", value: 100 }],
-        [{ name: "北京" }, { name: "贵阳", value: 100 }],
-        [{ name: "北京" }, { name: "杭州", value: 100 }]
+        [{name: "北京"}, {name: "长沙", value: 100}],
+        [{name: "北京"}, {name: "贵阳", value: 100}],
+        [{name: "北京"}, {name: "杭州", value: 100}]
       ]
 
-  	}
+    }
   },
-  computed: {
-  	
-  },
+  computed: {},
   created() {
   },
   mounted() {
@@ -358,82 +356,82 @@ export default {
         ["北京", this.YCData]
       ].forEach((item, i) => {
         series.push(
-          {
-            name: item[0] + " Top3",
-            type: "lines",
-            zlevel: 1,
-            effect: {
-              show: true,
-              period: 6,
-              trailLength: 0.7,
-              color: "red", //arrow箭头的颜色
-              symbolSize: 3
-            },
-            lineStyle: {
-              normal: {
-                color: color[i],
-                width: 0,
-                curveness: 0.2
-              }
-            },
-            data: this.convertData(item[1])
-          },
-          {
-            name: item[0] + " Top3",
-            type: "lines",
-            zlevel: 2,
-            symbol: ["none", "arrow"],
-            symbolSize: 10,
-            effect: {
-              show: true,
-              period: 6,
-              trailLength: 0,
-              symbol: planePath,
-              symbolSize: 15
-            },
-            lineStyle: {
-              normal: {
-                color: color[i],
-                width: 1,
-                opacity: 0.6,
-                curveness: 0.2
-              }
-            },
-            data: this.convertData(item[1])
-          },
-          {
-            name: item[0] + " Top3",
-            type: "effectScatter",
-            coordinateSystem: "geo",
-            zlevel: 2,
-            rippleEffect: {
-              brushType: "stroke"
-            },
-            label: {
-              normal: {
+            {
+              name: item[0] + " Top3",
+              type: "lines",
+              zlevel: 1,
+              effect: {
                 show: true,
-                position: "right",
-                formatter: "{b}"
-              }
-            },
-            symbolSize: (val) => {
-              return val[2] / 8;
-            },
-            itemStyle: {
-              normal: {
-                color: color[i]
+                period: 6,
+                trailLength: 0.7,
+                color: "red", //arrow箭头的颜色
+                symbolSize: 3
               },
-              emphasis: {
-                areaColor: "#2B91B7"
-              }
+              lineStyle: {
+                normal: {
+                  color: color[i],
+                  width: 0,
+                  curveness: 0.2
+                }
+              },
+              data: this.convertData(item[1])
             },
-            data: item[1].map((dataItem) => {
-              return {
-                name: dataItem[1].name,
-                value: this.geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
-              };
-            })
-          }
+            {
+              name: item[0] + " Top3",
+              type: "lines",
+              zlevel: 2,
+              symbol: ["none", "arrow"],
+              symbolSize: 10,
+              effect: {
+                show: true,
+                period: 6,
+                trailLength: 0,
+                symbol: planePath,
+                symbolSize: 15
+              },
+              lineStyle: {
+                normal: {
+                  color: color[i],
+                  width: 1,
+                  opacity: 0.6,
+                  curveness: 0.2
+                }
+              },
+              data: this.convertData(item[1])
+            },
+            {
+              name: item[0] + " Top3",
+              type: "effectScatter",
+              coordinateSystem: "geo",
+              zlevel: 2,
+              rippleEffect: {
+                brushType: "stroke"
+              },
+              label: {
+                normal: {
+                  show: true,
+                  position: "right",
+                  formatter: "{b}"
+                }
+              },
+              symbolSize: (val) => {
+                return val[2] / 8;
+              },
+              itemStyle: {
+                normal: {
+                  color: color[i]
+                },
+                emphasis: {
+                  areaColor: "#2B91B7"
+                }
+              },
+              data: item[1].map((dataItem) => {
+                return {
+                  name: dataItem[1].name,
+                  value: this.geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                };
+              })
+            }
         );
       });
 
@@ -445,11 +443,11 @@ export default {
               return "线路：" + params.data.name + "" + params.data.value[2];
             } else if (params.seriesType == "lines") {
               return (
-                params.data.fromName +
-                ">" +
-                params.data.toName +
-                "<br />" +
-                params.data.value
+                  params.data.fromName +
+                  ">" +
+                  params.data.toName +
+                  "<br />" +
+                  params.data.value
               );
             } else {
               return params.name;
@@ -500,15 +498,18 @@ export default {
   width: 100%;
   height: 100%;
   background: #000;
+
   .wrap {
     background: url(../assets/img/brand/bg.jpg) no-repeat #000;
     background-size: cover;
     line-height: 1.15;
+
     header {
       position: relative;
       height: 1rem;
       background: url(../assets/img/brand/head_bg.png) no-repeat top center;
       background-size: 100% 100%;
+
       h2 {
         color: #7ef0ff;
         font-size: 0.475rem;
@@ -516,39 +517,48 @@ export default {
         line-height: 0.75rem;
         letter-spacing: 1px;
       }
+
       .weather {
         position: absolute;
         left: 1.375rem;
         top: 0.35rem;
         font-size: 0.25rem;
         color: rgba(126, 240, 255, .7);
+
         img {
           width: .45rem;
         }
+
         span {
           display: inline-block;
         }
+
         .tem {
           margin: 0 .1rem 0 .2rem;
         }
       }
+
       .showTime {
         position: absolute;
         right: 1.375rem;
         top: 0.5rem;
         color: rgba(126, 240, 255, .7);
         display: flex;
+
         .time {
           font-size: .28rem;
           margin-right: .18rem;
         }
+
         .date {
           span {
             display: block;
+
             &:nth-child(1) {
               font-size: .12rem;
               text-align: right;
             }
+
             &:nth-child(2) {
               font-size: .14rem;
             }
@@ -556,14 +566,16 @@ export default {
         }
       }
     }
-    
+
     .mainbox {
       min-width: 1024px;
       max-width: 1920px;
       padding: 0.125rem 0.125rem 0;
       display: flex;
+
       .item {
         flex: 3;
+
         &.center {
           flex: 5;
           margin: 0 0.125rem 0.1rem;
@@ -572,11 +584,14 @@ export default {
           .resume {
             background: rgba(101, 132, 226, 0.1);
             padding: 0.1875rem;
+
             .resume-hd {
               position: relative;
               border: 1px solid rgba(25, 186, 139, 0.17);
+
               ul {
                 display: flex;
+
                 %li-line {
                   content: "";
                   position: absolute;
@@ -585,6 +600,7 @@ export default {
                   background: rgba(255, 255, 255, 0.2);
                   top: 25%;
                 }
+
                 li {
                   position: relative;
                   flex: 1;
@@ -596,11 +612,13 @@ export default {
                   padding: 0.05rem 0;
                   font-family: 'DIGITALDREAMFAT';
                   font-weight: bold;
+
                   &:nth-child(2) {
                     &:after {
                       @extend %li-line;
                       right: 0;
                     }
+
                     &:before {
                       @extend %li-line;
                       left: 0;
@@ -608,6 +626,7 @@ export default {
                   }
                 }
               }
+
               &:before {
                 content: "";
                 position: absolute;
@@ -618,6 +637,7 @@ export default {
                 top: 0;
                 left: 0;
               }
+
               &:after {
                 content: "";
                 position: absolute;
@@ -629,9 +649,11 @@ export default {
                 bottom: 0;
               }
             }
+
             .resume-bd {
               ul {
                 display: flex;
+
                 li {
                   flex: 1;
                   height: 0.5rem;
@@ -645,7 +667,7 @@ export default {
             }
           }
         }
-        
+
         %map-style {
           position: absolute;
           top: 50%;
@@ -657,9 +679,11 @@ export default {
           background-size: 100% 100%;
           opacity: 0.3;
         }
+
         .map {
           position: relative;
           height: 10.125rem;
+
           .chart {
             position: absolute;
             top: 0;
@@ -668,9 +692,11 @@ export default {
             height: 10.125rem;
             width: 100%;
           }
+
           .map1 {
             @extend %map-style;
           }
+
           .map2 {
             @extend %map-style;
             width: 8.0375rem;
@@ -681,6 +707,7 @@ export default {
             animation: rotate 15s linear infinite;
             z-index: 2;
           }
+
           .map3 {
             @extend %map-style;
             width: 7.075rem;
@@ -690,6 +717,7 @@ export default {
             animation: rotate1 10s linear infinite;
           }
         }
+
         .panel {
           position: relative;
           height: 3.875rem;
@@ -697,6 +725,7 @@ export default {
           background: rgba(255, 255, 255, 0.04) url(../assets/img/brand/line.png);
           padding: 0 0.1875rem 0;
           margin-bottom: 0.1875rem;
+
           &:before {
             position: absolute;
             top: 0;
@@ -707,6 +736,7 @@ export default {
             border-top: 2px solid #02a6b5;
             border-left: 2px solid #02a6b5;
           }
+
           &:after {
             position: absolute;
             top: 0;
@@ -723,6 +753,7 @@ export default {
             left: 0;
             bottom: 0;
             width: 100%;
+
             &:before {
               position: absolute;
               bottom: 0;
@@ -733,6 +764,7 @@ export default {
               border-bottom: 2px solid #02a6b5;
               border-left: 2px solid #02a6b5;
             }
+
             &:after {
               position: absolute;
               bottom: 0;
@@ -752,12 +784,14 @@ export default {
             color: #fff;
             font-size: 0.225rem;
             font-weight: 400;
+
             a {
               margin: 0 0.1875rem;
               color: #fff;
               text-decoration: none;
             }
           }
+
           .chart {
             height: 3rem;
           }
@@ -778,6 +812,7 @@ export default {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
 @keyframes rotate {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -795,6 +830,7 @@ export default {
     transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
+
 @keyframes rotate1 {
   from {
     transform: translate(-50%, -50%) rotate(0deg);
@@ -809,9 +845,10 @@ export default {
     font-size: 42px !important;
   }
 }
+
 @media screen and (min-width: 1920) {
   html {
     font-size: 80px !important;
   }
-}	
+}
 </style>

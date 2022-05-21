@@ -1,45 +1,44 @@
 <template>
   <div class="traceList">
-    <row>
-      <div class="trace" >
-        <div style="width: 95%;height:900px; alignment: center;margin: 0 auto ">
-          <el-button  @click="dialogVisible = true">根因定位</el-button>
-          <el-dialog
-              :visible.sync="dialogVisible"
-              title="localization_result"
-              width="60%">
-            <el-table
-                :data="tableData"
-                style="width: 100%">
-              <el-table-column
-                  prop="operation_name"
-                  label="operation_name"
-                  width="500%">
-              </el-table-column>
-              <el-table-column
-                  prop="failure_score"
-                  label="failure_score">
-              </el-table-column>
-            </el-table>
-          </el-dialog>
-          <div id="trace1" style="width: 100%;height:800px; alignment: center;">
-          </div>
+    <div>
+      <div class="trace" style="width: 95%;height:900px; alignment: center;margin: 0 auto ">
+        <el-button class="el-button" @click="dialogVisible = true">根因定位</el-button>
+        <el-dialog
+            :visible.sync="dialogVisible"
+            title="localization_result"
+            width="60%">
+          <el-table
+              :data="tableData"
+              style="width: 100%">
+            <el-table-column
+                prop="operation_name"
+                label="operation_name"
+                width="500%">
+            </el-table-column>
+            <el-table-column
+                prop="failure_score"
+                label="failure_score">
+            </el-table-column>
+          </el-table>
+        </el-dialog>
+        <div id="trace1" style="width: 100%;height:800px; alignment: center;">
         </div>
-        <div id="trace2" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace3" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace4" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace5" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace6" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace7" style="width: 95%;height:800px; alignment: center"></div>
-        <div id="trace8" style="width: 95%;height:800px; alignment: center"></div>
       </div>
-    </row>
+      <div id="trace2" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace3" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace4" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace5" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace6" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace7" style="width: 95%;height:800px; alignment: center"></div>
+      <div id="trace8" style="width: 95%;height:800px; alignment: center"></div>
+    </div>
+
 
   </div>
 </template>
 <!--<script src="../common/echarts.js"></script>-->
 <script>
-import echarts from 'echarts'
+import * as echarts from 'echarts'
 import treeJson from '../data/tree/tree.json'
 import traceJson from '../data/trace.json'
 import localizationResult from '../data/true_localization_result.json'
@@ -49,7 +48,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      tableData:[]
+      tableData: []
     };
   },
   mounted() {
@@ -58,17 +57,16 @@ export default {
   methods: {
     init() {
       var jsonName;
-      var option;
-      var trace;
       var traceChart;
       var title = Object.keys(traceJson);
 
-      this.tableData=localizationResult;
+      this.tableData = localizationResult;
       console.log(this.tableData)
+      // eslint-disable-next-line no-unused-vars
+      var option;
       for (let i = 1; i <= 8; i++) {
         jsonName = "trace" + i;
-        trace = document.getElementById(jsonName)
-        traceChart = echarts.init(trace)
+        traceChart = echarts.init(document.getElementById(jsonName));
         traceChart.setOption(
             (option = {
               title: {
@@ -102,7 +100,6 @@ export default {
               series: [
                 {
                   type: 'tree',
-
                   data: [treeJson[i - 1]],
                   left: '2%',
                   right: '2%',
@@ -132,8 +129,6 @@ export default {
             })
         );
       }
-
-
     }
   }
 }
@@ -143,5 +138,7 @@ export default {
 
 <style scoped>
 
-
+.el-button{
+  margin-left: 47%;
+}
 </style>
