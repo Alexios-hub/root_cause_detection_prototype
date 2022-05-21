@@ -8,7 +8,9 @@
   <div class="home-container">
     <div ref="editor" class="wrap">
       <!-- <div class="top"></div> -->
-<!--      <dynamicLine/>-->
+     <dynamicLine/>
+     <NodeLine/>
+     
       <div class="divider"></div>
     </div>
 
@@ -17,10 +19,11 @@
 
 <script>
 import {screenSize} from '@/assets/js/utils'
+import NodeLine from '../components/node/nodeLine.vue';
 
 export default {
   name: 'Home',
-  components: {},
+  components: {NodeLine},
   data() {
     return {}
   },
