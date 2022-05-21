@@ -7,37 +7,11 @@
 <template>
   <div class="home-container">
   	<div class="wrap" ref="editor">
-      <div class="top"></div>
+      <!-- <div class="top"></div> -->
       
-      <sinan />
-      <seamless />
-      <pyramid />
-
-      <scrollArc />
-      <szBar />
-
-      <ringPin />
-      <rotateColorful />
-      <circleRunway />
-      <scanRadius />
-
-      <cakeLinkage />
-      <pyramidTrend />
+    
       <dynamicLine />
 
-      <staffMix />
-      <flashCloud />
-      <ringPie />
-      <colorfulRadar />
-
-      <dynamicList />
-      <bar3d />
-      <colorfulArea />
-
-      <rainbow />
-      <gauge />
-      <waterPolo />
-      <circleNesting />
 
       <div class="divider"></div>
 
@@ -85,7 +59,8 @@ export default {
     background-position: 50% 0;
     background-color: rgb(0, 0, 0);
     min-width: auto;
-    width: 1920px;
+    // width: 1920px;
+    width: 100%;
     min-height: auto;
     height: 1080px;
     overflow: auto;
