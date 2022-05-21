@@ -1,0 +1,146 @@
+[
+  {
+    "operation_name": "cartservice::HGET",
+    "failure_score": 1.0
+  },
+  {
+    "operation_name": "cartservice::HMSET",
+    "failure_score": 1.0
+  },
+  {
+    "operation_name": "cartservice::/hipstershop.CartService/EmptyCart",
+    "failure_score": 0.5
+  },
+  {
+    "operation_name": "adservice::hipstershop.adservice/getads",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "cartservice::/hipstershop.CartService/AddItem",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "cartservice::/hipstershop.CartService/GetCart",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.CartService/EmptyCart",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.CartService/GetCart",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.CheckoutService/PlaceOrder",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.CurrencyService/Convert",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.EmailService/SendOrderConfirmation",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.PaymentService/Charge",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.ProductCatalogService/GetProduct",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.ShippingService/GetQuote",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "checkoutservice::hipstershop.ShippingService/ShipOrder",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "currencyservice::grpc.hipstershop.CurrencyService/Convert",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "currencyservice::grpc.hipstershop.CurrencyService/GetSupportedCurrencies",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "emailservice::/hipstershop.EmailService/SendOrderConfirmation",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.AdService/GetAds",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.CartService/AddItem",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.CartService/GetCart",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.CheckoutService/PlaceOrder",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.CurrencyService/Convert",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.CurrencyService/GetSupportedCurrencies",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.Frontend/Recv.",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.ProductCatalogService/GetProduct",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.ProductCatalogService/ListProducts",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.RecommendationService/ListRecommendations",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "frontend::hipstershop.ShippingService/GetQuote",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "paymentservice::grpc.hipstershop.PaymentService/Charge",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "productcatalogservice::hipstershop.ProductCatalogService/GetProduct",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "productcatalogservice::hipstershop.ProductCatalogService/ListProducts",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "recommendationservice::/hipstershop.ProductCatalogService/ListProducts",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "recommendationservice::/hipstershop.RecommendationService/ListRecommendations",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "shippingservice::hipstershop.ShippingService/GetQuote",
+    "failure_score": 0.0
+  },
+  {
+    "operation_name": "shippingservice::hipstershop.ShippingService/ShipOrder",
+    "failure_score": 0.0
+  }
+]
