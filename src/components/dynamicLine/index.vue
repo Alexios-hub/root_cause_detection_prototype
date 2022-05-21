@@ -57,27 +57,56 @@ console.log(this.goldMetric);
        case 1:
          
            this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['count'];
-           this.option['series'][0]['data']=this.goldMetric['adservice-http']['count'];
-           this.option['series'][0]['data']=this.goldMetric['cartservice-grpc']['count']
-           this.option['series'][0]['data']=this.goldMetric['checkoutservice-grpc']['count']
-           this.option['series'][0]['data']=this.goldMetric['currencyservice-grpc']['count']
-           this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['count']
+           this.option['series'][1]['data']=this.goldMetric['adservice-http']['count'];
+           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['count'];
+           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['count'];
+           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['count'];
+           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['count'];
+            this.option['series'][6]['data']=this.goldMetric['frontend-http']['count'];
+             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['count'];
+             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['count'];
+             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['count'];
+             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['count'];
          
          break;
             case 2:
-         for(var i=0;i<this.option['series'].length;i++){
-           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['mrt']
-         }
+            this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['mrt'];
+           this.option['series'][1]['data']=this.goldMetric['adservice-http']['mrt'];
+           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['mrt'];
+           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['mrt'];
+           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['mrt'];
+           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['mrt'];
+            this.option['series'][6]['data']=this.goldMetric['frontend-http']['mrt'];
+             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['mrt'];
+             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['mrt'];
+             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['mrt'];
+             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['mrt'];
          break;
                case 3:
-         for(var i=0;i<this.option['series'].length;i++){
-           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['rr']
-         }
+        this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['rr'];
+           this.option['series'][1]['data']=this.goldMetric['adservice-http']['rr'];
+           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['rr'];
+           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['rr'];
+           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['rr'];
+           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['rr'];
+            this.option['series'][6]['data']=this.goldMetric['frontend-http']['rr'];
+             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['rr'];
+             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['rr'];
+             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['rr'];
+             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['rr'];
          break;
                case 4:
-         for(var i=0;i<this.option['series'].length;i++){
-           this.option['series'][i]['data']=this.goldMetric['adservice-grpc']['sr']
-         }
+        this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['sr'];
+           this.option['series'][1]['data']=this.goldMetric['adservice-http']['sr'];
+           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['sr'];
+           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['sr'];
+           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['sr'];
+           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['sr'];
+            this.option['series'][6]['data']=this.goldMetric['frontend-http']['sr'];
+             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['sr'];
+             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['sr'];
+             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['sr'];
+             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['sr'];
          break;
          
 
@@ -125,7 +154,7 @@ console.log(this.goldMetric);
         }
         var rowSplit=goldDataSplit[i].split(',');
         // console.log(rowSplit);
-        this.goldMetric[nowname]['timeStamp'].push(rowSplit[1]);
+        this.goldMetric[nowname]['timeStamp'].push(new Date(parseInt(rowSplit[1]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '));
         this.goldMetric[nowname]['rr'].push(rowSplit[2]);
         this.goldMetric[nowname]['sr'].push(rowSplit[3]);
         this.goldMetric[nowname]['mrt'].push(rowSplit[4]);
