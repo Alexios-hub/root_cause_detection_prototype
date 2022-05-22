@@ -6,14 +6,6 @@
 
 <template>
 
-  <!-- <div class="home-container"> -->
-    <!-- <div ref="editor" class="wrap"> -->
-      <!-- <div class="top"></div> -->
-     <!-- <dynamicLine/> -->
-     <!-- <NodeLine/> -->
-     
-      <!-- <div class="divider"></div> -->
-    <!-- </div> -->
 <div>
 
 <Entry/>
