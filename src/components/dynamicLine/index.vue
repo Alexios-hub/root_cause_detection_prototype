@@ -118,7 +118,7 @@ console.log(Object.keys(this.goldMetric));
 
     },
     readFile(goldMetricFilePath) {
-     
+
    axios.get(goldMetricFilePath).then(response=>{
     //  console.log(response.data);
      this.processGoldMetric(response.data);
@@ -431,11 +431,10 @@ console.log(Object.keys(this.goldMetric));
   // left: 1282px;
   // top: 1548px;
   width: 100%;
-  // height: 4000px;
+  // height: 400px;
   .chartsdom {
     width: 100%;
     height: 100%;
   }
 }
-
 </style>
