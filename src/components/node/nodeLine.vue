@@ -5,23 +5,29 @@
 -->
 
 <template>
-  <div class="wrap-container sn-container"> 
-    <div class="sn-content" > 
-      <div class="sn-title">node指标
-         <el-radio-group v-model="radio" @change="onRadioChange" >
-    <el-radio :label="1">count</el-radio>
-    <el-radio :label="2">mrt</el-radio>
-    <el-radio :label="3">rr</el-radio>
-    <el-radio :label="4">sr</el-radio>
-  </el-radio-group>
-        </div> 
-      <div class="sn-body"> 
-        <div class="wrap-container"> 
-          <div class="chartsdom" id="chart_dt1"></div> 
+<div  >
+  <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);width: 98%;margin-top:5%;margin-bottom:10%;margin-left: 1%;margin-right: 1%;"  > 
+    <div class="sn-content"  > 
+      <div class="sn-title">node
+        
+        <div style="margin-top:20px">
+            <el-radio-group v-model="radio" v-for="(item,i) in services" :key="i" @change="onRadioChange" >
+
+  <el-radio :label="item" style="margin:10px">{{item}}</el-radio>
+  
+  </el-radio-group >
+  </div>
+      <!-- <div class="sn-body">  -->
+        <!-- <div class="wrap-container">  -->
+          <!-- <div class="chartsdom" id="chart_dt1"></div>  -->
+          <div  id="chart_dt1" style="width:100%;height:600px "></div> 
+      </div>
         </div> 
       </div> 
+       
     </div>   
-  </div>
+  <!-- </div> -->
+<!-- </div> -->
 </template>
 
 <script>
@@ -30,7 +36,10 @@ export default {
   name: "dynamicLine",
   data() {
     return {
-       radio: 1,
+      theStyle:{
+
+      },
+       radio: '',
       option: null,
       timer: null,
       xData: [],
@@ -39,14 +48,36 @@ export default {
       oneDay: 24 * 3600 * 1000,
     //   goldMetric:[],
       nodeMetric:[],
-      timeStamp:[]
+      timeStamp:[],
+      services:[
+"system.mem.pct_usage",
+"system.mem.free",
+"system.mem.real.pct_usage",
+"system.mem.used",
+"system.disk.free",
+"system.disk.pct_usage",
+"system.disk.used",
+"system.io.avg_q_sz",
+"system.io.r_await",
+"system.io.rkb_s",
+"system.io.r_s",
+"system.io.util",
+"system.io.avg_q_sz",
+"system.io.w_await",
+"system.io.w_s",
+"system.io.util",
+"system.cpu.pct_usage",
+"system.cpu.user",
+"system.load.1",
+],
+      topAlign:[]
       
     }
   },
   created(){
 
 this.readFile('/kpi_cloudbed1_metric_0320.csv');
-console.log(this.nodeMetric);
+// console.log(this.nodeMetric);
 
   },
   mounted() {
@@ -54,74 +85,13 @@ console.log(this.nodeMetric);
   },
   methods: {
     onRadioChange(){
-      let myChart = echarts.init(document.getElementById('chart_dt1'),'dark');
-     switch(this.radio){
-       case 1:
-         
-           this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['count'];
-           this.option['series'][1]['data']=this.goldMetric['adservice-http']['count'];
-           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['count'];
-           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['count'];
-           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['count'];
-           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['count'];
-            this.option['series'][6]['data']=this.goldMetric['frontend-http']['count'];
-             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['count'];
-             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['count'];
-             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['count'];
-             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['count'];
-         
-         break;
-            case 2:
-            this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['mrt'];
-           this.option['series'][1]['data']=this.goldMetric['adservice-http']['mrt'];
-           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['mrt'];
-           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['mrt'];
-           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['mrt'];
-           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['mrt'];
-            this.option['series'][6]['data']=this.goldMetric['frontend-http']['mrt'];
-             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['mrt'];
-             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['mrt'];
-             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['mrt'];
-             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['mrt'];
-         break;
-               case 3:
-        this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['rr'];
-           this.option['series'][1]['data']=this.goldMetric['adservice-http']['rr'];
-           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['rr'];
-           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['rr'];
-           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['rr'];
-           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['rr'];
-            this.option['series'][6]['data']=this.goldMetric['frontend-http']['rr'];
-             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['rr'];
-             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['rr'];
-             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['rr'];
-             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['rr'];
-         break;
-               case 4:
-        this.option['series'][0]['data']=this.goldMetric['adservice-grpc']['sr'];
-           this.option['series'][1]['data']=this.goldMetric['adservice-http']['sr'];
-           this.option['series'][2]['data']=this.goldMetric['cartservice-grpc']['sr'];
-           this.option['series'][3]['data']=this.goldMetric['checkoutservice-grpc']['sr'];
-           this.option['series'][4]['data']=this.goldMetric['currencyservice-grpc']['sr'];
-           this.option['series'][5]['data']=this.goldMetric['emailservice-grpc']['sr'];
-            this.option['series'][6]['data']=this.goldMetric['frontend-http']['sr'];
-             this.option['series'][7]['data']=this.goldMetric['paymentservice-grpc']['sr'];
-             this.option['series'][8]['data']=this.goldMetric['productcatalogservice-grpc']['sr'];
-             this.option['series'][9]['data']=this.goldMetric['recommendationservice-grpc']['sr'];
-             this.option['series'][10]['data']=this.goldMetric['shippingservice-grpc']['sr'];
-         break;
-         
-
-     }
-      myChart.setOption(this.option, true);
-       
-
+       this.getEchart();
 
     },
     readFile(nodeMetricFilePath) {
    axios.get(nodeMetricFilePath).then(response=>{
-     console.log(response.data);
-    //  this.processNodeMetric(response.data);
+    //  console.log(response.data);
+     this.processNodeMetric(response.data);
     
     //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
     //  this.getEchart();
@@ -131,18 +101,48 @@ console.log(this.nodeMetric);
   },
 
   processNodeMetric(nodeData){
-      var rows = nodeData.split('\n');
-      this.timeStamp.push(rows[0].split(',')[0]);
-      for(var i=0;i<rows.length;i++){
+      var rows = nodeData.split('\r\n');
+      this.timeStamp.push(new Date(parseInt(rows[1].split(',')[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '));
+      
+      
+
+      for(var i=1;i<rows.length;i++){
+         
           var row = rows[i].split(',');
-          if(i>1&&row[0]!=rows[i-1].split(',')[0]){
-              this.timeStamp.push(row[0]);
+         
+          // console.log(i);
+          if(typeof(this.nodeMetric[row[2]])=="undefined"){
+            //   console.log(111);
+            // console.log(row[2]);
+            if(this.services.indexOf(row[2])==-1)continue;
+              this.nodeMetric[row[2]]=[];
+            //   console.log(this.nodeMetric[row[1]]);
           }
-          
+          if(typeof(this.nodeMetric[row[2]][row[1]])=="undefined"){
+              this.nodeMetric[row[2]][row[1]]=[];
+          }
+          this.nodeMetric[row[2]][row[1]].push(row[3]);
+          // console.log(this.nodeMetric);
+          if(i>1&&row[0]!=rows[i-1].split(',')[0]){
+              this.timeStamp.push(new Date(parseInt(row[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '));
+
+          }
+         
+         
+
+      }
+
+      // console.log(this.nodeMetric);
+      // this.services=Object.keys(this.nodeMetric);
+      this.radio=this.services[0];
+      this.services.pop();
+      // console.log(this.services);
+      for(var i=0;i<this.services.length;i++){
+        this.topAlign.push(i*1000+900);
       }
 
 
-
+  this.getEchart();
 
   },
 
@@ -160,10 +160,10 @@ console.log(this.nodeMetric);
       };
     },
     getEchart() {
+     
       let myChart = echarts.init(document.getElementById('chart_dt1'),'dark');
-      for (let i = 0; i < 1000; i++) {
-        this.xData.push(this.randomData());
-      }
+  
+      
 
       this.option = {
         tooltip: {
@@ -188,11 +188,11 @@ console.log(this.nodeMetric);
         color: ['#b54c5d'],
         calculable: true,
         xAxis: {
-          data:this.goldMetric['adservice-grpc']['timeStamp'],
+          data:this.timeStamp,
           // type: 'time',
           name: 'timeStamp',
           boundaryGap: false,
-          splitNumber: 5,
+          // splitNumber: 5,
           // axisLabel: {
           //   formatter(value) {
           //     let date = new Date(value);
@@ -233,153 +233,38 @@ console.log(this.nodeMetric);
           },
         
         },
-        series: [{
-          name: 'adservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['adservice-grpc']['count'],
+        series: [
+        //   {
+        //   name: 'adservice-grpc',
+        //   type: 'line',
+        //   xAxisIndex: 0,
+        //   yAxisIndex: 0,
+        //   itemStyle: {
+        //     opacity: 0,
+        //   },
+        //   // data: this.xData,
+        //   data:this.goldMetric['adservice-grpc']['count'],
           
-          smooth: true
-        },
-        {
-          name: 'adservice-http',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['adservice-http']['count'],
-          
-          smooth: true
-        },
-         {
-          name: 'cartservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['cartservice-grpc']['count'],
-          
-          smooth: true
-        },
-          {
-          name: 'checkoutservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['checkoutservice-grpc']['count'],
-          
-          smooth: true
-        },
-         {
-          name: 'currencyservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['currencyservice-grpc']['count'],
-          
-          smooth: true
-        },
-         {
-          name: 'emailservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['emailservice-grpc']['count'],
-          
-          smooth: true
-        },
-          {
-          name: 'frontend-http',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['frontend-http']['count'],
-          
-          smooth: true
-        },
-         {
-          name: 'paymentservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['paymentservice-grpc']['count'],
-          
-          smooth: true
-        },
-          {
-          name: 'productcatalogservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['productcatalogservice-grpc']['count'],
-          
-          smooth: true
-        },
-         
-          {
-          name: 'recommendationservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['recommendationservice-grpc']['count'],
-          
-          smooth: true
-        },
-         {
-          name: 'shippingservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['shippingservice-grpc']['count'],
-          
-          smooth: true
-        },
-        
-
+        //   smooth: true
+        // },
+      
         ]
+      }
+
+        var series =Object.keys(this.nodeMetric[this.radio]);
+
+      for(var i=0;i<series.length;i++){
+         var temp={};
+         temp['name']=series[i];
+         temp['type']='line';
+         temp['xAxisIndex']=0;
+         temp['yAxisIndex']=0;
+         var itemstyle={};
+         itemstyle['opacity']=0;
+         temp['itemStyle']=itemstyle;
+         temp['data']=this.nodeMetric[this.radio][series[i]];
+         temp['smooth']=true;
+         this.option.series.push(temp);
       }
 
       myChart.setOption(this.option, true);
@@ -409,7 +294,9 @@ console.log(this.nodeMetric);
   // left: 1282px;
   top: 800px;
   width: 100%;
-  // height: 4000px;
+  height: 750px;
+
+
   .chartsdom {
     width: 100%;
     height: 100%;

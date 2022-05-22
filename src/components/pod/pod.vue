@@ -1,0 +1,249 @@
+<template>
+    <div>
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 700px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
+    <div class="sn-content"  > 
+      <div class="sn-title">pod基础指标
+        <div style="margin-top:20px">
+       <el-radio-group v-model="radio" @change="onRadioChange" v-for="(item,i) in kpi" :key="i">
+       
+    <el-radio :label="item">{{item}}</el-radio>
+ 
+  </el-radio-group>
+  </div>
+<div  id="chart_dt2" style="width:100%;height:600px "></div> 
+</div>
+    </div>
+ </div>
+    </div>
+</template>
+<script>
+import axios from'axios'
+export default {
+  name: "dynamicLine",
+  data() {
+    return {
+      radio: 'container_cpu_user_seconds',
+      option: null,
+      container_kpi:['kpi_container_cpu_cfs_periods.csv','kpi_container_cpu_cfs_throttled_periods.csv','kpi_container_cpu_cfs_throttled_seconds.csv','kpi_container_cpu_usage_seconds.csv','kpi_container_cpu_user_seconds.csv',
+      'kpi_container_fs_reads.csv','kpi_container_fs_reads_MB.csv','kpi_container_fs_usage_MB.csv','kpi_container_fs_writes.csv','kpi_container_memory_rss.csv','kpi_container_memory_usage_MB.csv','kpi_container_memory_working_set_MB.csv',
+      'kpi_container_network_receive_errors.csv','kpi_container_network_receive_MB.csv','kpi_container_network_receive_packets.csv','kpi_container_network_receive_packets_dropped.csv','kpi_container_network_transmit_errors.csv','kpi_container_network_transmit_MB.csv',
+      'kpi_container_network_transmit_packets.csv','kpi_container_network_transmit_packets_dropped.csv'],
+      podMetric:[],
+      timeStamp:[],
+      kpi:[],
+    
+    }
+  },
+  created(){
+      for(var i=0;i<this.container_kpi.length;i++){
+this.readFile('/'+this.container_kpi[i]);
+      }
+     
+
+
+// console.log(this.goldMetric);
+
+
+  },
+  mounted() {
+ 
+  },
+  methods: {
+    onRadioChange(){
+      let myChart = echarts.init(document.getElementById('chart_dt2'));
+    
+      myChart.setOption(this.option, true);
+       
+
+
+    },
+    readFile(goldMetricFilePath) {
+     
+   axios.get(goldMetricFilePath).then(response=>{
+    //  console.log(response.data);
+     this.processData(response.data);
+    //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
+    //  this.getEchart();
+
+   })
+
+  },
+  processData(data){
+      var dataSplit=data.split('\r\n');
+    //   console.log(dataSplit);
+      var tmpData1=[];
+      var tmpData2=[];
+      for(var i=0;i<dataSplit.length;i++){
+        //   if(p1&&p2)break;
+        //   var row=dataSplit[i].split(',');
+        //   if(row[0]>=1647730800&&row[0]<=1647734340){
+        //       p1=true;
+        //       tmpData1=dataSplit.slice(i,2400+i);
+        //       i=2399+i;
+              
+        //   }
+        //   else if(row[0]>=1647734400&&row[0]<=1647737940){
+        //       p2=true;
+        //       tmpData2=dataSplit.slice(i,2400+i);
+        //       i=2399+i;
+        //   }
+           var row = dataSplit[i].split(',');
+           if(row[0]>=1647730800&&row[0]<=1647734340)tmpData1.push(dataSplit[i]);
+            if(row[0]>=1647734400&&row[0]<=1647737940)tmpData2.push(dataSplit[i]);
+      }
+      var tmpData=tmpData1.concat(tmpData2);
+
+      // console.log(tmpData);
+      for(var i=0;i<60;i++){
+          let row=tmpData[i].split(',');
+          this.timeStamp.push(new Date(parseInt(row[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '))
+      }
+       for(var i=0;i<60;i++){
+          let row=tmpData2[i].split(',');
+          this.timeStamp.push(new Date(parseInt(row[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '))
+      }
+
+    //   console.log(this.timeStamp);
+      for(var i=0;i<tmpData.length;i++){
+          let row =tmpData[i].split(',');
+          if(this.podMetric[row[2]]==undefined){
+              this.podMetric[row[2]]=[];
+          }
+          if(this.podMetric[row[2]][row[1]]==undefined)
+          this.podMetric[row[2]][row[1]]=[];
+          this.podMetric[row[2]][row[1]].push(row[3]);
+
+      }
+      // console.log(this.podMetric);
+      this.kpi=Object.keys(this.podMetric);
+      console.log(this.kpi);
+      this.radio=this.kpi[0];
+      
+  
+
+       
+  },
+
+
+ 
+   
+    getEchart() {
+      //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
+      let myChart = echarts.init(document.getElementById('chart_dt2'),'dark');
+      for (let i = 0; i < 1000; i++) {
+        this.xData.push(this.randomData());
+      }
+
+      this.option = {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#283b56'
+              }
+            }
+          }
+        },
+        grid: {
+          // top: '10%',
+          // left: '3%',
+          // right: '12%',
+          // bottom: '3%',
+          containLabel: true
+        },
+        color: ['#b54c5d'],
+        calculable: true,
+        xAxis: {
+          data:this.goldMetric['adservice-grpc']['timeStamp'],
+          // type: 'time',
+          name: 'timeStamp',
+          boundaryGap: false,
+          splitNumber: 5,
+          // axisLabel: {
+          //   formatter(value) {
+          //     let date = new Date(value);
+          //     return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+          //   }
+          // },
+          axisTick: {
+            show: false
+          }, 
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#2867a8'
+            }
+          },
+          splitLine: {
+            show: false
+          }
+          
+        },
+        yAxis: {
+          type: 'value',
+          scale: true,
+          name: 'value',
+          min: 0,
+          boundaryGap:  false,
+          axisTick: {
+            show: false
+          }, 
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#2867a8'
+            }
+          },
+          splitLine: {
+            show: false
+          },
+        
+        },
+        series: [{
+          name: 'adservice-grpc',
+          type: 'line',
+          xAxisIndex: 0,
+          yAxisIndex: 0,
+          itemStyle: {
+            opacity: 0,
+          },
+          // data: this.xData,
+          data:this.goldMetric['adservice-grpc']['count'],
+          
+          smooth: true
+        }
+        
+
+        ]
+      }
+
+      myChart.setOption(this.option, true);
+
+  
+    }
+  },
+
+};
+
+
+
+</script>
+
+<style lang="scss" scoped>
+.sn-container {
+  // left: 1282px;
+  top: 1600px;
+  width: 100%;
+  height: 750px;
+
+
+  .chartsdom {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+</style>

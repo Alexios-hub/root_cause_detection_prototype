@@ -44,8 +44,8 @@ export default {
   created(){
 
 this.readFile('/metric_service_0320.csv');
-console.log(this.goldMetric);
-console.log(Object.keys(this.goldMetric));
+// console.log(this.goldMetric);
+
 
   },
   mounted() {
@@ -133,7 +133,7 @@ console.log(Object.keys(this.goldMetric));
 
   processGoldMetric(goldData){
     var goldDataSplit=goldData.split('\n');
-    console.log(goldDataSplit[0]);
+    // console.log(goldDataSplit[0]);
     let label=['service','timestamp','rr','sr','mrt','count'];
     var nowname=goldDataSplit[1].split(',')[0];
     this.goldMetric[nowname]=[];
@@ -167,7 +167,8 @@ console.log(Object.keys(this.goldMetric));
 
 
     }
-    console.log(this.goldMetric);
+    // console.log(this.goldMetric);
+    // console.log(Object.keys(this.goldMetric));
   },
     
     randomData() {
@@ -182,6 +183,7 @@ console.log(Object.keys(this.goldMetric));
       };
     },
     getEchart() {
+      //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
       let myChart = echarts.init(document.getElementById('chart_dt'),'dark');
       for (let i = 0; i < 1000; i++) {
         this.xData.push(this.randomData());

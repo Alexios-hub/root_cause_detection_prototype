@@ -5,25 +5,32 @@
 -->
 
 <template>
-  <div class="home-container">
-    <div ref="editor" class="wrap">
-      <!-- <div class="top"></div> -->
-     <dynamicLine/>
-     <NodeLine/>
-     
-      <div class="divider"></div>
-    </div>
 
+  <!-- <div class="home-container"> -->
+    <!-- <div ref="editor" class="wrap"> -->
+      <!-- <div class="top"></div> -->
+     <!-- <dynamicLine/> -->
+     <!-- <NodeLine/> -->
+     
+      <!-- <div class="divider"></div> -->
+    <!-- </div> -->
+<div>
+
+<Entry/>
+<NodeLine/>
+<pod/>
   </div>
 </template>
 
 <script>
 import {screenSize} from '@/assets/js/utils'
 import NodeLine from '../components/node/nodeLine.vue';
+import Entry from '../components/Entry/Entry.vue';
+import Pod from '../components/pod/pod.vue';
 
 export default {
   name: 'Home',
-  components: {NodeLine},
+  components: { NodeLine, Entry, Pod },
   data() {
     return {}
   },
@@ -31,7 +38,7 @@ export default {
   created() {
   },
   mounted() {
-    screenSize(this.$refs.editor);
+    // screenSize(this.$refs.editor);
   },
   methods: {}
 }
