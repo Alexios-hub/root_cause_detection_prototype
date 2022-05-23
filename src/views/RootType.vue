@@ -1,6 +1,9 @@
 <template>
   <div>
     <div v-if="isShow" style="width: 95%; alignment: center;margin: 0 auto">
+      <el-row type="flex" justify="center"  align="middle">
+        <el-button @click="goToShowTrace">根因定位</el-button>
+      </el-row>
       <div id="table1" style="width: 100%;height:800px; alignment: center;">
         <el-row type="flex" justify="center"  align="middle" style="font-size: 20px" >{{fileName[0]}}</el-row>
         <el-table
@@ -319,6 +322,10 @@ export default {
     this.$forceUpdate()
   },
   methods: {
+    goToShowTrace()
+    {
+      this.$router.replace('/showTrace')
+    },
     father() {
       this.getData();//这个函数是去获得所有数据
       setTimeout(()=>{

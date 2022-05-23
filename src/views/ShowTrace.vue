@@ -1,8 +1,13 @@
 <template>
   <div class="traceList">
-    <div>
+    <el-row type="flex" justify="center"  align="middle">
+      <el-button @click="goToRootType">根因类型</el-button>
+    </el-row>
+    <div style="margin-top: 10px">
       <div class="trace" style="width: 95%;height:900px; alignment: center;margin: 0 auto ">
-        <el-button class="el-button" @click="dialogVisible = true">根因定位</el-button>
+        <el-row type="flex" justify="center"  align="middle">
+          <el-button  @click="dialogVisible = true">根因定位</el-button>
+        </el-row>
         <el-dialog
             :visible.sync="dialogVisible"
             title="localization_result"
@@ -33,7 +38,6 @@
       <div id="trace8" style="width: 95%;height:800px; alignment: center"></div>
     </div>
 
-
   </div>
 </template>
 <!--<script src="../common/echarts.js"></script>-->
@@ -55,6 +59,10 @@ export default {
     this.init();
   },
   methods: {
+    goToRootType()
+    {
+      this.$router.replace('/rootType')
+    },
     init() {
       var jsonName;
       var traceChart;
@@ -138,7 +146,4 @@ export default {
 
 <style scoped>
 
-.el-button{
-  margin-left: 47%;
-}
 </style>
