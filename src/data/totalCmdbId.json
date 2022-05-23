@@ -1,0 +1,86 @@
+{
+  "istio_request_bytes": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_request_duration_milliseconds": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_request_messages": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_requests": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_response_bytes": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_response_messages": [
+    "cartservice-0.destination.checkoutservice.cartservice",
+    "cartservice-0.destination.frontend.cartservice",
+    "cartservice-1.destination.checkoutservice.cartservice",
+    "cartservice-1.destination.frontend.cartservice",
+    "cartservice-2.destination.checkoutservice.cartservice",
+    "cartservice-2.destination.frontend.cartservice",
+    "cartservice2-0.destination.checkoutservice2.cartservice2",
+    "cartservice2-0.destination.frontend2.cartservice2"
+  ],
+  "istio_tcp_connections_closed": [
+    "cartservice-0.source.cartservice.redis-cart",
+    "cartservice-1.source.cartservice.redis-cart",
+    "cartservice-2.source.cartservice.redis-cart",
+    "cartservice2-0.source.cartservice2.redis-cart2"
+  ],
+  "istio_tcp_connections_opened": [
+    "cartservice-0.source.cartservice.redis-cart",
+    "cartservice-1.source.cartservice.redis-cart",
+    "cartservice-2.source.cartservice.redis-cart",
+    "cartservice2-0.source.cartservice2.redis-cart2"
+  ],
+  "istio_tcp_received_bytes": [
+    "cartservice-0.source.cartservice.redis-cart",
+    "cartservice-1.source.cartservice.redis-cart",
+    "cartservice-2.source.cartservice.redis-cart",
+    "cartservice2-0.source.cartservice2.redis-cart2"
+  ],
+  "istio_tcp_sent_bytes": [
+    "cartservice-0.source.cartservice.redis-cart",
+    "cartservice-1.source.cartservice.redis-cart",
+    "cartservice-2.source.cartservice.redis-cart",
+    "cartservice2-0.source.cartservice2.redis-cart2"
+  ]
+}

@@ -69,7 +69,6 @@ export default {
       var title = Object.keys(traceJson);
 
       this.tableData = localizationResult;
-      console.log(this.tableData)
       // eslint-disable-next-line no-unused-vars
       var option;
       for (let i = 1; i <= 8; i++) {
@@ -99,7 +98,7 @@ export default {
               tooltip: {
                 trigger: 'item',
                 formatter: function (arg) {
-                  let label = ' name: ' + arg.data['name'] + '\navg: ' + arg.data['avg'] + '\nstd: ' + arg.data['std']
+                  let label = 'name: ' + arg.data['name'] + '\navg: ' + arg.data['normal_mean'] + '\nstd: '+ arg.data['abnormal_mean'] + '\nstd: '  + arg.data['std']
                   return label
                 },
                 extraCssText: 'width:600px; white-space:pre-wrap',
