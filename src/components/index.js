@@ -39,8 +39,10 @@ import history from './companySummary/history' // 发展历程
 import nodeLine from'./node/nodeLine'//node图
 import Entry from './Entry/Entry'
 import pod from './pod/pod'
+import istio from'./Istio/Istio'
 
 const components = {
+  istio,
   pod,
   Entry,
   nodeLine,

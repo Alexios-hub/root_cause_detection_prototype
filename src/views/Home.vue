@@ -6,12 +6,18 @@
 
 <template>
 
-<div>
 
+  
+<div class="home-container">
+  	<div class="wrap" ref="editor">
+      <!-- <div class="top"></div> -->
 <Entry/>
 <NodeLine/>
 <pod/>
-  </div>
+<Istio/>
+</div>
+</div>
+ 
 </template>
 
 <script>
@@ -19,10 +25,15 @@ import {screenSize} from '@/assets/js/utils'
 import NodeLine from '../components/node/nodeLine.vue';
 import Entry from '../components/Entry/Entry.vue';
 import Pod from '../components/pod/pod.vue';
+import Istio from '../components/Istio/Istio.vue';
+import WordCloud from '../components/companySummary/wordCloud.vue';
+import WaterPolo from '../components/waterPolo/index.vue';
 
 export default {
   name: 'Home',
-  components: { NodeLine, Entry, Pod },
+  components: { NodeLine, Entry, Pod, Istio, WordCloud, WaterPolo },
+
+
   data() {
     return {}
   },
@@ -46,15 +57,16 @@ export default {
 
   .wrap {
     transform-origin: 0px 0px 0px;
-    background: url(../assets/img/bj.jpg) no-repeat;
+    // background: url(../assets/img/bj.jpg) no-repeat;
     background-size: contain;
     background-position: 50% 0;
-    background-color: rgb(0, 0, 0);
+    // background-color: rgb(0, 0, 0);
+    background-color: #010d0f;
     min-width: auto;
     // width: 1920px;
     width: 100%;
     min-height: auto;
-    height: 1080px;
+    height: 4000px;
     overflow: auto;
 
     .top {

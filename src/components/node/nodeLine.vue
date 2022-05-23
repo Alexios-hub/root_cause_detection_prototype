@@ -20,7 +20,7 @@
       <!-- <div class="sn-body">  -->
         <!-- <div class="wrap-container">  -->
           <!-- <div class="chartsdom" id="chart_dt1"></div>  -->
-          <div  id="chart_dt1" style="width:100%;height:600px "></div> 
+          <div  id="chart_dt1" style="width:99%;height:600px "></div> 
       </div>
         </div> 
       </div> 
@@ -294,7 +294,7 @@ this.readFile('/kpi_cloudbed1_metric_0320.csv');
   // left: 1282px;
   top: 800px;
   width: 100%;
-  height: 750px;
+  height: 800px;
 
 
   .chartsdom {

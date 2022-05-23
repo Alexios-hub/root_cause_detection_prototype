@@ -1,6 +1,6 @@
 <template>
     <div>
- <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 700px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 750px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%;"  > 
     <div class="sn-content"  > 
       <div class="sn-title">黄金指标
         <div style="margin-top:20px">
@@ -11,8 +11,9 @@
     <el-radio :label="4">sr</el-radio>
   </el-radio-group>
   </div>
-<div  id="chart_dt" style="width:100%;height:600px "></div> 
+<div  id="chart_dt" style="width:99%;height:600px; "></div> 
 </div>
+
     </div>
  </div>
     </div>

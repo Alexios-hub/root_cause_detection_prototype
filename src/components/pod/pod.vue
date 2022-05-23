@@ -1,16 +1,16 @@
 <template>
     <div>
- <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 700px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 900px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
     <div class="sn-content"  > 
       <div class="sn-title">pod基础指标
-        <div style="margin-top:20px">
-       <el-radio-group v-model="radio" @change="onRadioChange" v-for="(item,i) in kpi" :key="i">
+        <div style="margin-top:20px;">
+       <el-radio-group v-model="radio" @change="onRadioChange()" v-for="(item,i) in kpi" :key="i">
        
-    <el-radio :label="item">{{item}}</el-radio>
+    <el-radio :label="item"  style="margin:10px">{{item}}</el-radio>
  
   </el-radio-group>
   </div>
-<div  id="chart_dt2" style="width:100%;height:600px "></div> 
+<div  id="chart_dt2" style="width:99%;height:600px "></div> 
 </div>
     </div>
  </div>
@@ -50,16 +50,17 @@ this.readFile('/'+this.container_kpi[i]);
   },
   methods: {
     onRadioChange(){
-      let myChart = echarts.init(document.getElementById('chart_dt2'));
+      // let myChart = echarts.init(document.getElementById('chart_dt2'));
     
-      myChart.setOption(this.option, true);
+      // myChart.setOption(this.option, true);
+      this.getEchart();
        
 
 
     },
-    readFile(goldMetricFilePath) {
+    readFile(path) {
      
-   axios.get(goldMetricFilePath).then(response=>{
+   axios.get(path).then(response=>{
     //  console.log(response.data);
      this.processData(response.data);
     //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
@@ -94,6 +95,7 @@ this.readFile('/'+this.container_kpi[i]);
       var tmpData=tmpData1.concat(tmpData2);
 
       // console.log(tmpData);
+      if(this.timeStamp.length<120){
       for(var i=0;i<60;i++){
           let row=tmpData[i].split(',');
           this.timeStamp.push(new Date(parseInt(row[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '))
@@ -101,6 +103,8 @@ this.readFile('/'+this.container_kpi[i]);
        for(var i=0;i<60;i++){
           let row=tmpData2[i].split(',');
           this.timeStamp.push(new Date(parseInt(row[0]) * 1000).toLocaleString().replace(/:\d{1,2}$/,' '))
+      }
+     
       }
 
     //   console.log(this.timeStamp);
@@ -115,9 +119,15 @@ this.readFile('/'+this.container_kpi[i]);
 
       }
       // console.log(this.podMetric);
+      
       this.kpi=Object.keys(this.podMetric);
-      console.log(this.kpi);
+      // console.log(this.kpi);
       this.radio=this.kpi[0];
+      if(this.kpi.length==21){
+         this.timeStamp=this.timeStamp.slice(39,104);
+this.getEchart();
+      }
+     
       
   
 
@@ -130,9 +140,7 @@ this.readFile('/'+this.container_kpi[i]);
     getEchart() {
       //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
       let myChart = echarts.init(document.getElementById('chart_dt2'),'dark');
-      for (let i = 0; i < 1000; i++) {
-        this.xData.push(this.randomData());
-      }
+ 
 
       this.option = {
         tooltip: {
@@ -157,7 +165,7 @@ this.readFile('/'+this.container_kpi[i]);
         color: ['#b54c5d'],
         calculable: true,
         xAxis: {
-          data:this.goldMetric['adservice-grpc']['timeStamp'],
+          data:this.timeStamp,
           // type: 'time',
           name: 'timeStamp',
           boundaryGap: false,
@@ -202,24 +210,39 @@ this.readFile('/'+this.container_kpi[i]);
           },
         
         },
-        series: [{
-          name: 'adservice-grpc',
-          type: 'line',
-          xAxisIndex: 0,
-          yAxisIndex: 0,
-          itemStyle: {
-            opacity: 0,
-          },
-          // data: this.xData,
-          data:this.goldMetric['adservice-grpc']['count'],
+        series: [
+        //   {
+        //   name: 'adservice-grpc',
+        //   type: 'line',
+        //   xAxisIndex: 0,
+        //   yAxisIndex: 0,
+        //   itemStyle: {
+        //     opacity: 0,
+        //   },
+        //   // data: this.xData,
+        //   data:this.goldMetric['adservice-grpc']['count'],
           
-          smooth: true
-        }
+        //   smooth: true
+        // }
         
 
         ]
       }
-
+      var nodes=Object.keys(this.podMetric[this.radio]);
+      for(var i=0;i<nodes.length;i++){
+        var dic={};
+        dic['name']=nodes[i];
+        dic['type']='line';
+        dic['xAxisIndex']=0;
+        dic['yAxisIndex']=0;
+        var itemStyle={};
+        itemStyle['opacity']=0;
+        dic['itemStyle']=itemStyle;
+        dic['data']=[];
+        dic['data']=this.podMetric[this.radio][nodes[i]].slice(39,104);
+        dic['smooth']=true;
+         this.option.series.push(dic);
+      }
       myChart.setOption(this.option, true);
 
   
@@ -235,9 +258,9 @@ this.readFile('/'+this.container_kpi[i]);
 <style lang="scss" scoped>
 .sn-container {
   // left: 1282px;
-  top: 1600px;
+  top: 1650px;
   width: 100%;
-  height: 750px;
+  height: 1000px;
 
 
   .chartsdom {
