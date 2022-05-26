@@ -1,6 +1,6 @@
 <template>
     <div>
- <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 900px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);height: 900px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
     <div class="sn-content"  > 
       <div class="sn-title">pod基础指标
         <div style="margin-top:20px;">
@@ -139,30 +139,22 @@ this.getEchart();
    
     getEchart() {
       //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
-      let myChart = echarts.init(document.getElementById('chart_dt2'),'dark');
+      let myChart = echarts.init(document.getElementById('chart_dt2'));
  
 
       this.option = {
         tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#283b56'
-              }
-            }
-          }
-        },
-        grid: {
-          // top: '10%',
-          // left: '3%',
-          // right: '12%',
-          // bottom: '3%',
-          containLabel: true
-        },
-        color: ['#b54c5d'],
+    trigger: 'axis'
+  },
+
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+
+        // color: ['#b54c5d'],
         calculable: true,
         xAxis: {
           data:this.timeStamp,

@@ -1,6 +1,6 @@
 <template>
     <div>
- <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 750px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%;"  > 
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);height: 750px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%;"  > 
     <div class="sn-content"  > 
       <div class="sn-title">黄金指标
         <div style="margin-top:20px">
@@ -11,8 +11,8 @@
     <el-radio :label="4">sr</el-radio>
   </el-radio-group>
   <div style="text-align:center;margin-bottom: 10px;">
-  <el-button @click="showDialog"  class="edit" >SPOT异常检测</el-button>
-   <el-button v-if="showTraceVisible" @click="goShowTrace"  class="edit" >根因定位</el-button>
+  <el-button @click="showDialog"   >SPOT异常检测</el-button>
+   <el-button v-if="showTraceVisible" @click="goShowTrace"  >根因定位</el-button>
   </div>
   </div>
 <div  id="chart_dt" style="width:99%;height:600px; "></div> 
@@ -111,7 +111,7 @@ this.readFile('/metric_service_0320.csv');
   },
   methods: {
     goShowTrace(){
-       this.$router.replace('/showTrace')
+       this.$router.push('/showTrace')
 
     },
     showDialog(){
@@ -302,32 +302,24 @@ this.readFile('/metric_service_0320.csv');
     },
     getEchart() {
       //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
-      let myChart = echarts.init(document.getElementById('chart_dt'),'dark');
+      let myChart = echarts.init(document.getElementById('chart_dt'));
       for (let i = 0; i < 1000; i++) {
         this.xData.push(this.randomData());
       }
 
       this.option = {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            axisPointer: {
-              type: 'cross',
-              label: {
-                backgroundColor: '#283b56'
-              }
-            }
-          }
-        },
-        grid: {
-          // top: '10%',
-          // left: '3%',
-          // right: '12%',
-          // bottom: '3%',
-          containLabel: true
-        },
-        color: ['#b54c5d'],
+         tooltip: {
+    trigger: 'axis'
+  },
+
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+
+        // color: ['#b54c5d'],
         calculable: true,
         xAxis: {
           data:this.goldMetric['adservice-grpc']['timeStamp'],
@@ -347,7 +339,7 @@ this.readFile('/metric_service_0320.csv');
           axisLine: {
             show: true,
             lineStyle: {
-              color: '#2867a8'
+              // color: '#2867a8'
             }
           },
           splitLine: {
@@ -367,7 +359,7 @@ this.readFile('/metric_service_0320.csv');
           axisLine: {
             show: true,
             lineStyle: {
-              color: '#2867a8'
+              // color: '#2867a8'
             }
           },
           splitLine: {

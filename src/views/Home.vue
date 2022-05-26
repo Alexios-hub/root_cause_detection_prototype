@@ -8,16 +8,17 @@
 
 
   
-<div class="home-container">
-  	<div class="wrap" ref="editor">
+<!-- <div class="home-container">
+  	<div class="wrap" ref="editor"> -->
       <!-- <div class="top"></div> -->
+      <div>
 <Entry/>
 <NodeLine/>
 <pod/>
 <Istio/>
-</div>
-</div>
- 
+<!-- </div>
+</div> -->
+ </div>
 </template>
 
 <script>

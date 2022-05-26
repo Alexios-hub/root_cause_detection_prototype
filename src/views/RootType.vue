@@ -1,9 +1,9 @@
 <template>
-<div class="home-container">
-  	<div class="wrap" ref="editor">
+<!-- <div class="home-container">
+  	<div class="wrap" ref="editor"> -->
   <div>
     <el-row align="middle" justify="center" type="flex" style="margin:30px">
-      <el-button @click="goToShowTrace"  class="edit">根因定位</el-button>
+      <el-button @click="goToShowTrace"  >根因定位</el-button>
     </el-row>
     <div id="myChart1" style="width: auto;  height: 600px;"></div>
     <div id="myChart2" style="width: auto;  height: 600px;"></div>
@@ -16,8 +16,8 @@
     <div id="myChart9" style="width: auto;  height: 600px;"></div>
     <div id="myChart10" style="width: auto;  height: 600px;"></div>
   </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->
 </template>
 
 <script>
@@ -72,7 +72,7 @@ export default {
         name='myChart'+(i+1)
         console.log(seriesList[patternName])
         console.log(cmdbList[patternName])
-        var myChart = echarts.init(document.getElementById(name),'dark');
+        var myChart = echarts.init(document.getElementById(name));
         option = {
           title: {
             text: this.fileName[i]
@@ -114,7 +114,7 @@ export default {
 
       },
     goToShowTrace() {
-      this.$router.replace('/showTrace')
+      this.$router.push('/showTrace')
     }
   }
 }
@@ -177,7 +177,7 @@ export default {
 .edit:focus {
   background: var(--el-button-hover-color);
   border-color: var(--el-button-hover-color);
-  color: var(--el-button-font-color);
+  // color: var(--el-button-font-color);
 }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
-<div class="home-container">
-  	<div class="wrap" ref="editor">
+<!-- <div class="home-container">
+  	<div class="wrap" ref="editor"> -->
   <div class="traceList">
     <el-row type="flex" justify="center"  align="middle">
       <el-button @click="goToRootType" type="info">根因类型</el-button>
@@ -45,8 +45,8 @@
     </div>
 
   </div>
-    </div>
-</div>
+    <!-- </div>
+</div> -->
 </template>
 <!--<script src="../common/echarts.js"></script>-->
 <script>
@@ -69,7 +69,7 @@ export default {
   methods: {
     goToRootType()
     {
-      this.$router.replace('/rootType')
+      this.$router.push('/rootType')
     },
     init() {
       var jsonName;

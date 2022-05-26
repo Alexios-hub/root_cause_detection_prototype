@@ -1,6 +1,6 @@
 <template>
     <div>
- <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);height: 1100px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
+ <div   class="wrap-container sn-container" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);height: 1100px;width: 98%;margin-top:5%;margin-bottom:10%;margin-left:1%;margin-right:1%"  > 
     <div class="sn-content"  > 
       <div class="sn-title">pod Istio指标
         <div style="margin-top:20px;">
@@ -22,6 +22,8 @@ export default {
   name: "dynamicLine",
   data() {
     return {
+      loadStack:[],
+      showLoading:false,
       radio: 'container_cpu_user_seconds',
       option: null,
       container_kpi:['kpi_istio_request_bytes.csv','kpi_istio_request_duration_milliseconds.csv','kpi_istio_request_messages.csv','kpi_istio_requests.csv','kpi_istio_response_bytes.csv','kpi_istio_response_messages.csv','kpi_istio_tcp_connections_closed.csv',
@@ -29,6 +31,12 @@ export default {
       podMetric:[],
       timeStamp:[],
       kpi:[],
+        //   loading : this.$loading({
+        //   lock: true,
+        //   text: 'Loading',
+        //   spinner: 'el-icon-loading',
+        //   background: 'rgba(0, 0, 0, 0.7)'
+        // })
     
     }
   },
@@ -68,6 +76,11 @@ this.readFile('/'+this.container_kpi[i]);
 
   },
   processData(data){
+    if(this.showLoading==false){
+      this.showLoading=true
+    
+    }
+    this.loadStack.push(1)
       var dataSplit=data.split('\r\n');
     //   console.log(dataSplit);
       var tmpData1=[];
@@ -128,6 +141,8 @@ this.readFile('/'+this.container_kpi[i]);
 this.getEchart();
       }
      
+     this.loadStack.pop();
+    //  if(this.loadStack.length==0)this.loading.close();
       
   
 
@@ -139,7 +154,7 @@ this.getEchart();
    
     getEchart() {
       //  console.log(this.goldMetric['adservice-grpc']['timeStamp']);
-      let myChart = echarts.init(document.getElementById('chart_dt3'),'dark');
+      let myChart = echarts.init(document.getElementById('chart_dt3'));
  
 
       this.option = {
@@ -162,7 +177,7 @@ this.getEchart();
           // bottom: '3%',
           containLabel: true
         },
-        color: ['#b54c5d'],
+        // color: ['#b54c5d'],
         calculable: true,
         xAxis: {
           data:this.timeStamp,
