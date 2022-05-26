@@ -1,20 +1,18 @@
 <template>
-<!-- <div class="home-container">
-  	<div class="wrap" ref="editor"> -->
   <div>
     <el-row align="middle" justify="center" type="flex" style="margin:30px">
       <el-button @click="goToShowTrace"  >根因定位</el-button>
     </el-row>
-    <div id="myChart1" style="width: auto;  height: 600px;"></div>
-    <div id="myChart2" style="width: auto;  height: 600px;"></div>
-    <div id="myChart3" style="width: auto;  height: 600px;"></div>
-    <div id="myChart4" style="width: auto;  height: 600px;"></div>
-    <div id="myChart5" style="width: auto;  height: 600px;"></div>
-    <div id="myChart6" style="width: auto;  height: 600px;"></div>
-    <div id="myChart7" style="width: auto;  height: 600px;"></div>
-    <div id="myChart8" style="width: auto;  height: 600px;"></div>
-    <div id="myChart9" style="width: auto;  height: 600px;"></div>
-    <div id="myChart10" style="width: auto;  height: 600px;"></div>
+    <div id="myChart1" style="width: auto;  height: 800px;"></div>
+    <div id="myChart2" style="width: auto;  height: 800px;"></div>
+    <div id="myChart3" style="width: auto;  height: 800px;"></div>
+    <div id="myChart4" style="width: auto;  height: 800px;"></div>
+    <div id="myChart5" style="width: auto;  height: 800px;"></div>
+    <div id="myChart6" style="width: auto;  height: 800px;"></div>
+    <div id="myChart7" style="width: auto;  height: 800px;"></div>
+    <div id="myChart8" style="width: auto;  height: 800px;"></div>
+    <div id="myChart9" style="width: auto;  height: 800px;"></div>
+    <div id="myChart10" style="width: auto;  height: 800px;"></div>
   </div>
     <!-- </div>
 </div> -->
@@ -81,7 +79,8 @@ export default {
             trigger: 'axis'
           },
           legend: {
-            data:cmdbList[patternName]
+            data:cmdbList[patternName],
+            top:"6%"
           },
           grid: {
             left: '3%',

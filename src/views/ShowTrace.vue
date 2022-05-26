@@ -1,6 +1,4 @@
 <template>
-<!-- <div class="home-container">
-  	<div class="wrap" ref="editor"> -->
   <div class="traceList">
     <el-row type="flex" justify="center"  align="middle">
       <el-button @click="goToRootType" type="info">根因类型</el-button>
@@ -10,7 +8,6 @@
         <el-row type="flex" justify="center"  align="middle">
           <el-button  @click="dialogVisible = true" type="info">根因定位</el-button>
         </el-row>
-      
         <el-dialog
             :visible.sync="dialogVisible"
             title="localization_result"
@@ -31,7 +28,6 @@
           </el-table>
           
         </el-dialog>
-       
         <div id="trace1" style="width: 100%;height:800px; alignment: center;">
         </div>
       </div>
@@ -106,7 +102,7 @@ export default {
               tooltip: {
                 trigger: 'item',
                 formatter: function (arg) {
-                  let label = 'name: ' + arg.data['name'] + '\navg: ' + arg.data['normal_mean'] + '\nstd: '+ arg.data['abnormal_mean'] + '\nstd: '  + arg.data['std']
+                  let label = 'name: ' + arg.data['name'] + '\nnormal_mean: ' + arg.data['normal_mean'] + '\nabnormal_mean: '+ arg.data['abnormal_mean'] + '\nstd: '  + arg.data['std']
                   return label
                 },
                 extraCssText: 'width:600px; white-space:pre-wrap',
