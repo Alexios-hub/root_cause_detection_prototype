@@ -1,17 +1,21 @@
 <template>
+<div class="home-container">
+  	<div class="wrap" ref="editor">
   <div class="traceList">
     <el-row type="flex" justify="center"  align="middle">
-      <el-button @click="goToRootType">根因类型</el-button>
+      <el-button @click="goToRootType" type="info">根因类型</el-button>
     </el-row>
     <div style="margin-top: 10px">
       <div class="trace" style="width: 95%;height:900px; alignment: center;margin: 0 auto ">
         <el-row type="flex" justify="center"  align="middle">
-          <el-button  @click="dialogVisible = true">根因定位</el-button>
+          <el-button  @click="dialogVisible = true" type="info">根因定位</el-button>
         </el-row>
+      
         <el-dialog
             :visible.sync="dialogVisible"
             title="localization_result"
             width="60%">
+           
           <el-table
               :data="tableData"
               style="width: 100%">
@@ -25,7 +29,9 @@
                 label="failure_score">
             </el-table-column>
           </el-table>
+          
         </el-dialog>
+       
         <div id="trace1" style="width: 100%;height:800px; alignment: center;">
         </div>
       </div>
@@ -39,6 +45,8 @@
     </div>
 
   </div>
+    </div>
+</div>
 </template>
 <!--<script src="../common/echarts.js"></script>-->
 <script>
@@ -143,6 +151,82 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.home-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  .wrap {
+    transform-origin: 0px 0px 0px;
+    // background: url(../assets/img/bj.jpg) no-repeat;
+    background-size: contain;
+    background-position: 50% 0;
+    // background-color: rgb(0, 0, 0);
+    background-color: #010d0f;
+    min-width: auto;
+    // width: 1920px;
+    width: 100%;
+    min-height: auto;
+    height: 4000px;
+    overflow: auto;
+
+    .top {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      background-color: transparent;
+      background: url(../assets/img/top_nav.png) no-repeat;
+      background-position: 65% 0;
+      border: none;
+      overflow: hidden;
+    }
+
+    .divider {
+      position: absolute;
+      left: 50px;
+      top: 3253px;
+      width: 90%;
+      height: 50px;
+      width: 300px;
+      border: none;
+      background: transparent;
+    }
+
+  }
+}
+.edit {
+  color: #fff;
+  background-color: rgb(15, 5, 89);
+  border-color: rgb(21, 47, 72);
+}
+.edit:hover,
+.edit:focus {
+  background: var(--el-button-hover-color);
+  border-color: var(--el-button-hover-color);
+  color: var(--el-button-font-color);
+}
+
+.tableAll{
+  width:900px;
+  height: 300px;
+  background-color: red;
+}
+.el-table, .el-table__expanded-cell {
+    background-color: transparent;
+}
+
+.el-table th, .el-table tr {
+    background-color: transparent;
+}
+.el-table__body tr:hover > td{
+    background-color:yellow !important;
+
+}
+
 
 </style>

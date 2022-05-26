@@ -167,7 +167,7 @@ this.getEchart();
         xAxis: {
           data:this.timeStamp,
           // type: 'time',
-          name: 'timeStamp',
+          name: 'time',
           boundaryGap: false,
           splitNumber: 5,
           // axisLabel: {

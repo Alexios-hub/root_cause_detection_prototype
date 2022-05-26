@@ -22,7 +22,7 @@ const routes = [
     name: 'Home',
     component: () => import('@/views/Home.vue'),
     meta: {
-      title: '酷屏首页统计图'
+      title: '根因分析原型设计'
     }
   },
   // {
@@ -33,23 +33,29 @@ const routes = [
   //     title: '公司品牌介绍'
   //   }
   // }
-  {
-    path: '/brand',
-    name: 'Brand',
-    component: () => import('@/views/Brand.vue'),
-    meta: {
-      title: '公司品牌介绍'
-    }
-  },
+  // {
+  //   path: '/brand',
+  //   name: 'Brand',
+  //   component: () => import('@/views/Brand.vue'),
+  //   meta: {
+  //     title: '公司品牌介绍'
+  //   }
+  // },
   {
     path:'/showTrace',
     name:'ShowTrace',
-    component: ()=>import('../views/ShowTrace')
+    component: ()=>import('../views/ShowTrace'),
+    meta: {
+      title: '根因分析原型设计'
+    }
   },
   {
     path:'/rootType',
     name:'/RootType',
-    component: ()=>import('../views/RootType')
+    component: ()=>import('../views/RootType'),
+    meta: {
+      title: '根因分析原型设计'
+    }
   }
 ]
 

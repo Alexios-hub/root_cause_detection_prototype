@@ -1,7 +1,9 @@
 <template>
+<div class="home-container">
+  	<div class="wrap" ref="editor">
   <div>
-    <el-row align="middle" justify="center" type="flex">
-      <el-button @click="goToShowTrace">根因定位</el-button>
+    <el-row align="middle" justify="center" type="flex" style="margin:30px">
+      <el-button @click="goToShowTrace"  class="edit">根因定位</el-button>
     </el-row>
     <div id="myChart1" style="width: auto;  height: 600px;"></div>
     <div id="myChart2" style="width: auto;  height: 600px;"></div>
@@ -14,6 +16,8 @@
     <div id="myChart9" style="width: auto;  height: 600px;"></div>
     <div id="myChart10" style="width: auto;  height: 600px;"></div>
   </div>
+    </div>
+</div>
 </template>
 
 <script>
@@ -68,7 +72,7 @@ export default {
         name='myChart'+(i+1)
         console.log(seriesList[patternName])
         console.log(cmdbList[patternName])
-        var myChart = echarts.init(document.getElementById(name));
+        var myChart = echarts.init(document.getElementById(name),'dark');
         option = {
           title: {
             text: this.fileName[i]
@@ -116,9 +120,64 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.home-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 
-.myChart {
+  .wrap {
+    transform-origin: 0px 0px 0px;
+    // background: url(../assets/img/bj.jpg) no-repeat;
+    background-size: contain;
+    background-position: 50% 0;
+    // background-color: rgb(0, 0, 0);
+    background-color: #010d0f;
+    min-width: auto;
+    // width: 1920px;
+    width: 100%;
+    min-height: auto;
+    height: 4000px;
+    overflow: auto;
 
+    .top {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 80px;
+      background-color: transparent;
+      background: url(../assets/img/top_nav.png) no-repeat;
+      background-position: 65% 0;
+      border: none;
+      overflow: hidden;
+    }
+
+    .divider {
+      position: absolute;
+      left: 50px;
+      top: 3253px;
+      width: 90%;
+      height: 50px;
+      width: 300px;
+      border: none;
+      background: transparent;
+    }
+
+  }
 }
+.edit {
+  color: #fff;
+  background-color: rgb(15, 5, 89);
+  border-color: rgb(21, 47, 72);
+}
+.edit:hover,
+.edit:focus {
+  background: var(--el-button-hover-color);
+  border-color: var(--el-button-hover-color);
+  color: var(--el-button-font-color);
+}
+
 </style>

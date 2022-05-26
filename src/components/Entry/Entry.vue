@@ -10,12 +10,36 @@
     <el-radio :label="3">rr</el-radio>
     <el-radio :label="4">sr</el-radio>
   </el-radio-group>
+  <div style="text-align:center;margin-bottom: 10px;">
+  <el-button @click="showDialog"  class="edit" >SPOT异常检测</el-button>
+   <el-button v-if="showTraceVisible" @click="goShowTrace"  class="edit" >根因定位</el-button>
+  </div>
   </div>
 <div  id="chart_dt" style="width:99%;height:600px; "></div> 
 </div>
 
     </div>
  </div>
+ <el-dialog
+            :visible.sync="dialogVisible"
+            title="SPOT"
+            width="60%">
+           
+          <el-table
+              :data="tableData"
+              style="width: 100%">
+            <el-table-column
+                prop="nodeName"
+                label="节点名"
+                width="500%">
+            </el-table-column>
+            <el-table-column
+                prop="score"
+                label="alarms个数">
+            </el-table-column>
+          </el-table>
+          
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -31,7 +55,48 @@ export default {
       now: +new Date(2019, 1, 1),
       value: Math.random() * 1000,
       oneDay: 24 * 3600 * 1000,
-      goldMetric:[]
+      goldMetric:[],
+      dialogVisible:false,
+      showTraceVisible:false,
+      tableData:[{
+        nodeName:'productcatalogservice-grpc',
+        score:11
+
+      },
+      {
+         nodeName:'checkoutservice-grpc',
+        score:10
+      },
+      {
+        nodeName:'recommendationservice-grpc',
+        score:10,
+        
+      },
+      {
+        nodeName:'frontend-http',
+        score:10
+      },
+      {
+        nodeName:'shippingservice-grpc',
+        score:2
+      },
+      {
+        nodeName:'currencyservice-grpc',
+        score:1
+      },
+       {
+        nodeName:'adservice-grpc',
+        score:0
+      },
+       {
+        nodeName:'cartservice-grpc',
+        score:0
+      },
+       {
+        nodeName:'emailservice-grpc',
+        score:0
+      }
+      ]
     }
   },
   created(){
@@ -45,6 +110,16 @@ this.readFile('/metric_service_0320.csv');
    
   },
   methods: {
+    goShowTrace(){
+       this.$router.replace('/showTrace')
+
+    },
+    showDialog(){
+      this.dialogVisible=true;
+      this.showTraceVisible=true;
+
+
+    },
     onRadioChange(){
       let myChart = echarts.init(document.getElementById('chart_dt'));
      switch(this.radio){
@@ -257,7 +332,7 @@ this.readFile('/metric_service_0320.csv');
         xAxis: {
           data:this.goldMetric['adservice-grpc']['timeStamp'],
           // type: 'time',
-          name: 'timeStamp',
+          name: 'time',
           boundaryGap: false,
           splitNumber: 5,
           // axisLabel: {
@@ -473,4 +548,16 @@ this.readFile('/metric_service_0320.csv');
 
 
 </script>
-
+<style scoped>
+.edit {
+  color: #fff;
+  background-color: rgb(15, 5, 89);
+  border-color: rgb(21, 47, 72);
+}
+.edit:hover,
+.edit:focus {
+  background: var(--el-button-hover-color);
+  border-color: var(--el-button-hover-color);
+  color: var(--el-button-font-color);
+}
+</style>

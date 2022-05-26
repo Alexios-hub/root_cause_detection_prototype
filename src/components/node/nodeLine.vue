@@ -190,7 +190,7 @@ this.readFile('/kpi_cloudbed1_metric_0320.csv');
         xAxis: {
           data:this.timeStamp,
           // type: 'time',
-          name: 'timeStamp',
+          name: 'time',
           boundaryGap: false,
           // splitNumber: 5,
           // axisLabel: {
