@@ -2,6 +2,14 @@
   <div>
     <el-row align="middle" justify="center" type="flex" style="margin:30px">
       <el-button @click="goToShowTrace"  >根因定位</el-button>
+      <el-button @click="dialogVisible = true"  >推荐根因</el-button>
+      <el-dialog
+          :visible.sync="dialogVisible"
+          title="推荐根因"
+          width="60%">
+        <div style="font-size: 20px">service层面 cartservice k8s容器网络延迟</div>
+      </el-dialog>
+
     </el-row>
     <div id="myChart1" style="width: auto;  height: 800px;"></div>
     <div id="myChart2" style="width: auto;  height: 800px;"></div>
@@ -27,6 +35,7 @@ export default {
   name: "RootType",
   data() {
     return {
+      dialogVisible:false,
       fileName: [
         "istio_request_bytes",
         "istio_request_duration_milliseconds",
@@ -83,6 +92,7 @@ export default {
             top:"6%"
           },
           grid: {
+            top: '30%',
             left: '3%',
             right: '4%',
             bottom: '3%',
@@ -104,11 +114,11 @@ export default {
         }
         console.log(option)
         myChart.setOption(option)
-        window.onresize = () => {
-          return (() => {
-            myChart.resize()
-          })()
-        }
+        // window.onresize = () => {
+        //   return (() => {
+        //     myChart.resize()
+        //   })()
+        // }
       }
 
       },
