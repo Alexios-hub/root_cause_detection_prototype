@@ -53,6 +53,7 @@ import localizationResult from '../data/true_localization_result.json'
 
 export default {
   name: "ShowTrace",
+
   data() {
     return {
       test:1,
