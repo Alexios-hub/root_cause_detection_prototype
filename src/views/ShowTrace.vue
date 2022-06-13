@@ -12,7 +12,7 @@
             :visible.sync="dialogVisible"
             title="localization_result"
             width="60%">
-           
+
           <el-table
               :data="tableData"
               style="width: 100%">
@@ -26,7 +26,7 @@
                 label="failure_score">
             </el-table-column>
           </el-table>
-          
+
         </el-dialog>
         <div id="trace1" style="width: 100%;height:800px; alignment: center;">
         </div>
@@ -55,6 +55,7 @@ export default {
   name: "ShowTrace",
   data() {
     return {
+      test:1,
       dialogVisible: false,
       tableData: []
     };
